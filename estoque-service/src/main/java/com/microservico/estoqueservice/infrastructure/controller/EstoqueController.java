@@ -17,11 +17,17 @@ public class EstoqueController {
     @Autowired
     private EstoqueService estoqueService;
 
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Estoque criarEstoque(@RequestBody Estoque estoque) {
-        return estoqueService.criarEstoque(estoque);
+        Estoque estoqueCriado = estoqueService.criarEstoque(estoque);
+        System.out.println("📦 ETAPA 03 - Estoque cadastrado com sucesso para SKU: " + estoqueCriado.getSku());
+        return estoqueCriado;
     }
+
+
+
 
     @GetMapping("/{sku}")
     public Estoque buscarEstoque(@PathVariable String sku) {
